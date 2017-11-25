@@ -32,14 +32,14 @@ class Conta extends Math
 {
 	use log;	
 	//criar classe soma
-	public function somar(a, b)
+	public function somar($a, $b)
 	{
 		$log_line = "$a + $b'<br>'";
 		$this->salvarLog($log_line);
 		return $a + $b;
 	}
 
-	public function subtracao(a, b)
+	public function subtracao($a, $b)
 	{
 		$log_line = "$a - $b'<br>'";
 		$this->salvarLog($log_line);
@@ -53,6 +53,6 @@ echo $contas->somar(5, 5);
 echo "<br>";
 echo $contas->subtracao(10, 5);
 echo "<br>";
-echo $contas->exibirLog;
+echo $contas->exibirLog();
 
 session_destroy();

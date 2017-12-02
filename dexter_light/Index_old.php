@@ -31,17 +31,18 @@ switch ($_GET['route'])
 	echo "<h1>Home</h1>";
 	break;
 
-	echo "<h1>Criar Banners</h1>";
+	default:
+	echo "<h1>Banners</h1>";
 
 	$banners = $conexao->query('SELECT * FROM banners');
-	$banners = $banners->fetchAll();
+	$banners = $banners ->fetchAll();
 		echo "<table class='table table-striped'>";
 		echo "<thead>";
 		echo "<tr>";
 		echo "<th>ID</th>";
 		echo "<th>Nome</th>";
 		echo "<th>Descrição</th>";
-		echo "<th>URL</th>";
+		echo "<th>Url</th>";
 		echo "</tr>";
 		echo "</thead>";
 		echo "</tbody>";
@@ -58,57 +59,11 @@ switch ($_GET['route'])
 		echo "</table>";
 
 		break;
-	case 'bannersCreate':
-
-		if( !empty( $_POST ['nome']) && !empty($_POST['url']))
-		{
-			$query = $conexao->prepare('INSERT INTO banners (nome, descricao, url) VALUES (:nome, :descricao, :url)');
-		
-		$banner = [
-		':nome'=> $_POST ['nome'],
-		':descricao'=> $_POST ['descricao'],
-		':url'=> $_POST ['url']
-		];
-
-		if ($query->execute($banner))
-		{
-				header('Location: ?route=banners');
-			} else {
-				echo "Erro ao adicionar o banner!.";
-			}
-		}
-		
-	echo '<form action="" method="POST">
-	
-	<div class="form-group">
-		<label for="nome">Nome</label>
-		<input class="form-control" id="nome" name="nome" placeholder="Nome">
-	</div>
-	
-	<div class="form-group">
-		<label for="descricao">Descrição</label>
-		<input class="form-control" id="descricao" name="descricao" placeholder="Descrição">
-	</div>
-	
-	<div class="form-group">
-		<label for="url">Url</label>
-		<input class="form-control" id="url" name="url" placeholder="Url">
-	</div>
-	
-	<button class="btn btn-primary">Criar</button>
-	
-</form>';
-		break;
-
-	default:
-		#code...
-		break;	
+	case 'banners/create':
 }	
-
 ?>
 
 </div>
-
 
 </body>
 </html>

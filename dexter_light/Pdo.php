@@ -2,7 +2,6 @@
 
 $conexao = new PDO('pgsql:host=localhost;dbname=dexter_light', 'master', '123abc');
 
-
 $query->execute($banner);
 
 $banners = $conexao->query('SELECT * FROM banners');
